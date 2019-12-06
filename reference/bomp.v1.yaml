@@ -3,7 +3,60 @@ info:
   title: BOMP
   version: '1.0'
 servers:
-  - url: 'http://bomp.localhost'
-paths: {}
+  - url: ' http://127.0.0.1:3100'
+paths:
+  /offer/getOffer:
+    get:
+      summary: Your GET endpoint
+      tags:
+        - offer
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/offer'
+              examples:
+                example-1:
+                  value:
+                    id: 1
+                    vendor: Seb
+                    price: 9.9
+        '404':
+          description: Not Found
+      operationId: get-offer
+      parameters: []
+      requestBody:
+        description: ''
+      description: Récupérer une offre
+    parameters: []
 components:
-  schemas: {}
+  schemas:
+    offer:
+      title: offer
+      type: object
+      description: ''
+      properties:
+        id:
+          type: integer
+          description: "ID de l'offre"
+        vendor:
+          type: string
+          description: Nom du vendeur
+        price:
+          type: integer
+          description: "Price de l'offre"
+      required:
+        - id
+        - vendor
+        - price
+      x-tags:
+        - offer
+      x-examples:
+        example-1:
+          id: 1
+          vendor: Seb
+          price: 9.9
+  securitySchemes: {}
